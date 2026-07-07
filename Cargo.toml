@@ -1,0 +1,30 @@
+[workspace]
+resolver = "2"
+members = [
+    "sentinel-core",
+    "sentinel-scanner",
+    # Phase 2: "sentinel-proxy"
+    # Phase 4: "sentinel-dashboard"
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Muhammad Azhar Shahbaz"]
+license = "MIT"
+repository = "https://github.com/fuwxt/mcp-sentinel"
+
+# Shared dependency versions pinned once here, inherited by member crates
+# via `dep.workspace = true`. Keeps every crate on the same version and
+# avoids the "works on my machine, breaks in sentinel-proxy" class of bugs.
+[workspace.dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", features = ["json"] }
+clap = { version = "4", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+thiserror = "1"
+anyhow = "1"
+colored = "2"
